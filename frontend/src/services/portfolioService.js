@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/portfolio";
+const API_URL = "https://stocks-p0sy.onrender.com";
 
 // Buy Stock
 export const buyStock = async (stockData) => {
