@@ -1,0 +1,30 @@
+.portfolio-container {
+    padding: 40px;
+}
+
+.portfolio-container h1 {
+    margin-bottom: 25px;
+    color: #0F172A;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    text-align: center;
+}
+
+th {
+    background: #2563EB;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
