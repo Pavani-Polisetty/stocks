@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPortfolio } from "../services/portfolioService";
+import { getPortfolio, sellStock } from "../services/portfolioService";
 import "./Portfolio.css";
 
 function Portfolio() {
@@ -17,6 +17,31 @@ function Portfolio() {
       console.log(error);
     }
   };
+  const handleSell = async (symbol) => {
+    const quantity = prompt("Enter quantity to sell");
+
+    if (!quantity) return;
+
+    try {
+      const response = await sellStock({
+        symbol,
+        quantity: Number(quantity),
+      });
+
+      alert(response.message);
+
+      loadPortfolio();
+    } catch (error) {
+  console.log(error);
+  console.log(error.response);
+
+  alert(
+    error.response?.data?.message ||
+    error.message ||
+    "Sell Failed"
+  );
+}
+  };
 
   return (
     <div className="portfolio-container">
@@ -32,6 +57,7 @@ function Portfolio() {
               <th>Quantity</th>
               <th>Buy Price</th>
               <th>Total Investment</th>
+              <th>Action</th>
             </tr>
           </thead>
 
@@ -42,6 +68,15 @@ function Portfolio() {
                 <td>{stock.quantity}</td>
                 <td>₹{stock.averagePrice}</td>
                 <td>₹{stock.quantity * stock.averagePrice}</td>
+
+                <td>
+                  <button
+                    className="sell-btn"
+                    onClick={() => handleSell(stock.symbol)}
+                  >
+                    Sell
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -31,3 +31,19 @@ export const getPortfolio = async () => {
 
   return response.data;
 };
+// Sell Stock
+export const sellStock = async (stockData) => {
+  const token = localStorage.getItem("token");
+
+  const response = await axios.post(
+    `${API_URL}/sell`,
+    stockData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
